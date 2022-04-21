@@ -2,3 +2,4 @@
 -- Expected answer is around 100,000
 -- (1 row)
 
+select population as smallest_oregon_population from city where state_abbreviation = 'OR' order by population asc limit(1);

@@ -3,3 +3,4 @@
 -- Exepcted answer is around 4,000
 -- (1 row)
 
+select (population/area) as population_density from state order by (population/area) desc limit(1);

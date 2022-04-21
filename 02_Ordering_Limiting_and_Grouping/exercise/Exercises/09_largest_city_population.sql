@@ -2,3 +2,4 @@
 -- Expected answer is around 8,300,000
 -- (1 row)
 
+select population as largest_city_population from city order by population desc limit(1);
