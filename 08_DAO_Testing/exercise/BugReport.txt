@@ -1,43 +1,49 @@
 Bug 1
 -----
 Test that demonstrates problem:
+getTimesheetsByEmployeeId_returns_list_of_all_timesheets_for_employee
 
-Expected output:
+Expected output: list with 2 timesheets
 
-Actual output:
+Actual output: list with 1 timesheets
 
-How did you fix this bug?
+How did you fix this bug? changed the if statement to a while loop
 
 
 Bug 2
 -----
 Test that demonstrates problem:
+getTimesheetsByProjectId_returns_list_of_all_timesheets_for_project
 
-Expected output:
+Expected output: list size should be 3
 
-Actual output:
+Actual output: java.lang.IndexOutOfBoundsException: Index 2 out of bounds for length 2
 
-How did you fix this bug?
+How did you fix this bug? line 52:  "WHERE project_id = ? " was initially employee id
 
 
 Bug 3
 -----
-Test that demonstrates problem:
+Test that demonstrates problem: updated_timesheet_has_expected_values_when_retrieved
 
-Expected output:
+Expected output: true
 
-Actual output:
+Actual output: false
 
 How did you fix this bug?
+line 75 in JdbcTimesheetDao, added " billable = ? " and corresponding accessor method to jdbcTemplate.update()
+
 
 
 Bug 4
 -----
-Test that demonstrates problem:
+Test that demonstrates problem: getBillableHours_returns_correct_total
 
-Expected output:
+Expected output: 0
 
-Actual output:
+Actual output: 2
 
 How did you fix this bug?
+line 94 in jdbcTimesheetDao:" added AND billable = true"
+                     "WHERE employee_id = ? AND project_id = ? AND billable = true";
 
