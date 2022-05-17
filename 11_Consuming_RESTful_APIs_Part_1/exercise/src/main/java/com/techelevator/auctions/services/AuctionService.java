@@ -9,25 +9,30 @@ public class AuctionService {
     public static final String API_BASE_URL = "http://localhost:3000/auctions/";
     private RestTemplate restTemplate = new RestTemplate();
 
+    //implemented the 4 methods below
 
     public Auction[] getAllAuctions() {
-        // call api here
-        return null;
+        Auction[] response = restTemplate.getForObject(API_BASE_URL,Auction[].class);
+        return response;
     }
 
     public Auction getAuction(int id) {
-        // call api here
-        return null;
+        String GET = API_BASE_URL+id;
+        Auction response = restTemplate.getForObject(GET,Auction.class);
+        return response;
     }
 
     public Auction[] getAuctionsMatchingTitle(String title) {
         // call api here
-        return null;
+        String GET = API_BASE_URL+"?title_like="+title;
+        Auction[] response = restTemplate.getForObject(GET, Auction[].class);
+        return response;
     }
 
     public Auction[] getAuctionsAtOrBelowPrice(double price) {
-        // call api here
-        return null;
+        String GET = API_BASE_URL+"?currentBid_lte="+price;
+        Auction[] response = restTemplate.getForObject(GET, Auction[].class);
+        return response;
     }
 
 }
