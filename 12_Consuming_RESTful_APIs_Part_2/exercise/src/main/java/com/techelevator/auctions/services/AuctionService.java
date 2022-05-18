@@ -15,20 +15,44 @@ public class AuctionService {
     public static final String API_BASE_URL = "http://localhost:3000/auctions/";
     private RestTemplate restTemplate = new RestTemplate();
 
-
+//implement
     public Auction add(Auction newAuction) {
-        // place code here
-        return null;
+        Auction auction = null;
+        try {
+            auction = restTemplate.postForObject(API_BASE_URL, makeEntity(newAuction), Auction.class);
+        } catch (RestClientResponseException e) {
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+        } catch (ResourceAccessException e) {
+            BasicLogger.log(e.getMessage());
+        }
+        return auction;
     }
-
+    //implement
     public boolean update(Auction updatedAuction) {
-        // place code here
-        return false;
-    }
+        try {
+            restTemplate.put(API_BASE_URL+updatedAuction.getId(), makeEntity(updatedAuction) );
+        } catch (RestClientResponseException e) {
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+            return false;
+        } catch (ResourceAccessException e) {
+            BasicLogger.log(e.getMessage());
+            return false;
+        }
+        return true;
 
+    }
+    //implement
     public boolean delete(int auctionId) {
-        // place code here
-        return false;
+        try {
+            restTemplate.delete(API_BASE_URL+auctionId);
+        } catch (RestClientResponseException e) {
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+            return false;
+        } catch (ResourceAccessException e) {
+            BasicLogger.log(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     public Auction[] getAllAuctions() {
